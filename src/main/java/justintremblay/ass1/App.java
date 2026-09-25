@@ -1,12 +1,15 @@
 package justintremblay.ass1;
 
 import javafx.application.Application;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 
@@ -33,6 +36,8 @@ public class App extends Application {
     private Label lblKey;
     private Label correctLabel;
     private Label lblWrong;
+    private Button btnNext;
+    private VBox root;
     
 
     @Override
@@ -57,6 +62,16 @@ public class App extends Application {
                 new Label("Correct:"), correctLabel,
                 new Label("Incorrect:"), lblWrong);
         stats.setAlignment(Pos.CENTER_LEFT);
+        
+        btnNext = new Button("Next");
+        Button btnReset = new Button("Reset");
+        HBox buttons = new HBox(10, btnNext, btnReset);
+
+        root = new VBox(12, progress, lblText, txtfTyped,
+                stats, keyboard, buttons);
+        root.setPadding(new Insets(15));
+
+        Scene scene = new Scene(root, 720, 480);
         
         primaryStage.setTitle("Typing Tutor");
         primaryStage.setScene(scene);
