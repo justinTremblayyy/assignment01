@@ -3,6 +3,7 @@ package justintremblay.ass1;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
@@ -25,6 +26,9 @@ public class App extends Application {
     private int textNum = 0;
 
     private Label lblText;
+    private Label progress;
+    private TextField txtfTyped;
+    
 
     @Override
     public void start(Stage primaryStage) {
@@ -32,6 +36,13 @@ public class App extends Application {
         lblText = new Label();
         lblText.setWrapText(true);
         lblText.setStyle("-fx-font-size: 18px;");
+        
+        progress = new Label();
+        progress.setStyle("-fx-font-size: 14px;");
+        
+        txtfTyped = new TextField();
+        txtfTyped.setPrefWidth(500);
+        txtfTyped.setDisable(true);
         
         primaryStage.setTitle("Typing Tutor");
         primaryStage.setScene(scene);
