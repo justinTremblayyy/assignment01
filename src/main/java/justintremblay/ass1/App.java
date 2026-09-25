@@ -7,6 +7,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
@@ -66,6 +68,8 @@ public class App extends Application {
         btnNext = new Button("Next");
         Button btnReset = new Button("Reset");
         HBox buttons = new HBox(10, btnNext, btnReset);
+        
+                GridPane keyboard = makeKeyboard();
 
         root = new VBox(12, progress, lblText, txtfTyped,
                 stats, keyboard, buttons);
@@ -77,7 +81,43 @@ public class App extends Application {
         primaryStage.setScene(scene);
         primaryStage.show();
     }
+    
+    
+    private GridPane makeKeyboard() {
+        GridPane grid = new GridPane();
+        grid.setHgap(4);
+        grid.setVgap(4);
+        grid.setAlignment(Pos.CENTER);
 
+        String[] nums = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "0"};
+        KeyCode[] numCodes = {
+            KeyCode.DIGIT1, KeyCode.DIGIT2, KeyCode.DIGIT3, KeyCode.DIGIT4, KeyCode.DIGIT5,
+            KeyCode.DIGIT6, KeyCode.DIGIT7, KeyCode.DIGIT8, KeyCode.DIGIT9, KeyCode.DIGIT0
+        };
+        for (int i = 0; i < nums.length; i++) {
+            grid.add(makeKey(nums[i], numCodes[i], 45), i, 0);
+        }
+
+        return grid;
+    }
+    
+    
+    /**
+     * creates a key for the keyboard and puts it in the map
+     * @param label the text on the key
+     * @param code the real key it matches
+     * @param width width of the key
+     * @return the button
+     */
+    private Button makeKey(String label, KeyCode code, double width) {
+        Button button = new Button(label);
+        button.setPrefWidth(width);
+        button.setPrefHeight(38);
+
+        return button;
+    }
+
+    
     public static void main(String[] args) {
         launch(args);
     }
