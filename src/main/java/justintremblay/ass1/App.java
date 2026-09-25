@@ -1,9 +1,11 @@
 package justintremblay.ass1;
 
 import javafx.application.Application;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
@@ -28,6 +30,9 @@ public class App extends Application {
     private Label lblText;
     private Label progress;
     private TextField txtfTyped;
+    private Label lblKey;
+    private Label correctLabel;
+    private Label lblWrong;
     
 
     @Override
@@ -43,6 +48,15 @@ public class App extends Application {
         txtfTyped = new TextField();
         txtfTyped.setPrefWidth(500);
         txtfTyped.setDisable(true);
+        
+        lblKey = new Label("-");
+        correctLabel = new Label("0");
+        lblWrong = new Label("0");
+        HBox stats = new HBox(20,
+                new Label("Last key:"), lblKey,
+                new Label("Correct:"), correctLabel,
+                new Label("Incorrect:"), lblWrong);
+        stats.setAlignment(Pos.CENTER_LEFT);
         
         primaryStage.setTitle("Typing Tutor");
         primaryStage.setScene(scene);
