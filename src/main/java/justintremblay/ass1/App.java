@@ -36,6 +36,8 @@ public class App extends Application {
 
     private Map<KeyCode, Button> keys = new HashMap<>();
     private int textNum = 0;
+    private int correctCount = 0;
+    private int wrongCount = 0;
 
     private Label lblText;
     private Label progress;
@@ -182,6 +184,14 @@ public class App extends Application {
                 String text = event.getText();
                 if (text != null && text.length() == 1) {
                     String target = texts[textNum];
+                    if (typed.length() < target.length()) {
+                        if (text.charAt(0) == target.charAt(typed.length())) {
+                            correctCount++;
+                        } else {
+                            wrongCount++;
+                        }
+                        updateScore();
+                    }
                     txtfTyped.setText(typed + text);
                 }
             }
@@ -197,6 +207,12 @@ public class App extends Application {
         if (key != null) {
             key.setStyle("");
         }
+    }
+    
+    
+    private void updateScore() {
+        correctLabel.setText(String.valueOf(correctCount));
+        lblWrong.setText(String.valueOf(wrongCount));
     }
 
     
