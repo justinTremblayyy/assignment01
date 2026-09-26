@@ -97,6 +97,23 @@ public class App extends Application {
         for (int i = 0; i < nums.length; i++) {
             grid.add(makeKey(nums[i], numCodes[i], 45), i, 0);
         }
+        
+        
+        String[] top = {"Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P"};
+        KeyCode[] topCodes = {
+            KeyCode.Q, KeyCode.W, KeyCode.E, KeyCode.R, KeyCode.T,
+            KeyCode.Y, KeyCode.U, KeyCode.I, KeyCode.O, KeyCode.P
+        };
+        for (int i = 0; i < top.length; i++) {
+            grid.add(makeKey(top[i], topCodes[i], 45), i, 1);
+        }
+        String[] middle = {"A", "S", "D", "F", "G", "H", "J", "K", "L"};
+        KeyCode[] midCodes = {KeyCode.A, KeyCode.S, KeyCode.D, KeyCode.F, KeyCode.G,
+            KeyCode.H, KeyCode.J, KeyCode.K, KeyCode.L};
+        for (int col = 0; col < middle.length; col++) {
+            grid.add(makeKey(middle[col], midCodes[col], 45), col, 2);
+        }
+        
 
         return grid;
     }
