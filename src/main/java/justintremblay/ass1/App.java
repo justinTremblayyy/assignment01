@@ -1,5 +1,8 @@
 package justintremblay.ass1;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -8,6 +11,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
@@ -30,6 +34,7 @@ public class App extends Application {
         "A large fawn jumped quickly over white zinc boxes."
     };
 
+    private Map<KeyCode, Button> keys = new HashMap<>();
     private int textNum = 0;
 
     private Label lblText;
@@ -76,7 +81,8 @@ public class App extends Application {
         root.setPadding(new Insets(15));
 
         Scene scene = new Scene(root, 720, 480);
-        
+        scene.setOnKeyPressed(event -> keyPressed(event));
+
         primaryStage.setTitle("Typing Tutor");
         primaryStage.setScene(scene);
         primaryStage.show();
@@ -147,8 +153,22 @@ public class App extends Application {
         Button button = new Button(label);
         button.setPrefWidth(width);
         button.setPrefHeight(38);
+        keys.put(code, button);
 
         return button;
+    }
+    
+    
+    /**
+     * runs when a key is pressed on the real keyboard
+     * @param event the key event
+     */
+    private void keyPressed(KeyEvent event) {
+        KeyCode code = event.getCode();
+        Button key = keys.get(code);
+        if (key != null) {
+            key.setStyle("-fx-background-color: #4CAF50; -fx-text-fill: white;");
+        }
     }
 
     
