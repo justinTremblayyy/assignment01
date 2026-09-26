@@ -161,6 +161,7 @@ public class App extends Application {
         Button button = new Button(label);
         button.setPrefWidth(width);
         button.setPrefHeight(38);
+        button.setOnAction(event -> root.requestFocus());
         keys.put(code, button);
 
         return button;
@@ -212,6 +213,8 @@ public class App extends Application {
         if (key != null) {
             key.setStyle("");
         }
+        root.requestFocus();
+
     }
     
     
