@@ -82,6 +82,7 @@ public class App extends Application {
 
         Scene scene = new Scene(root, 720, 480);
         scene.setOnKeyPressed(event -> keyPressed(event));
+        scene.setOnKeyReleased(event -> keyReleased(event));
 
         primaryStage.setTitle("Typing Tutor");
         primaryStage.setScene(scene);
@@ -168,6 +169,33 @@ public class App extends Application {
         Button key = keys.get(code);
         if (key != null) {
             key.setStyle("-fx-background-color: #4CAF50; -fx-text-fill: white;");
+            
+            lblKey.setText(code.getName());
+            lblKey.setStyle("-fx-text-fill: black;");
+            
+            String typed = txtfTyped.getText();
+            if (code == KeyCode.BACK_SPACE) {
+                if (typed.length() > 0) {
+                    txtfTyped.setText(typed.substring(0, typed.length() - 1));
+                }
+            } else {
+                String text = event.getText();
+                if (text != null && text.length() == 1) {
+                    String target = texts[textNum];
+                    txtfTyped.setText(typed + text);
+                }
+            }
+            
+        } else {
+            lblKey.setText("Not handled");
+            lblKey.setStyle("-fx-text-fill: red;");
+        }
+    }
+    
+    private void keyReleased(KeyEvent event) {
+        Button key = keys.get(event.getCode());
+        if (key != null) {
+            key.setStyle("");
         }
     }
 
