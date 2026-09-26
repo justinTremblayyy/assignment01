@@ -73,7 +73,11 @@ public class App extends Application {
         stats.setAlignment(Pos.CENTER_LEFT);
         
         btnNext = new Button("Next");
+        btnNext.setOnAction(event -> next());
         Button btnReset = new Button("Reset");
+        btnReset.setOnAction(event -> reset());
+
+        
         HBox buttons = new HBox(10, btnNext, btnReset);
         
                 GridPane keyboard = makeKeyboard();
@@ -89,6 +93,7 @@ public class App extends Application {
         primaryStage.setTitle("Typing Tutor");
         primaryStage.setScene(scene);
         primaryStage.show();
+        showText(0);
     }
     
     
@@ -215,6 +220,31 @@ public class App extends Application {
         lblWrong.setText(String.valueOf(wrongCount));
     }
 
+    
+    private void showText(int num) {
+        textNum = num;
+        lblText.setText(texts[textNum]);
+        txtfTyped.setText("");
+        progress.setText((textNum + 1) + " of " + texts.length);
+        btnNext.setDisable(textNum == texts.length - 1);
+        root.requestFocus();
+    }
+
+    private void next() {
+        if (textNum < texts.length - 1) {
+            showText(textNum + 1);
+        }
+    }
+
+    private void reset() {
+        correctCount = 0;
+        wrongCount = 0;
+        updateScore();
+        lblKey.setText("-");
+        lblKey.setStyle("-fx-text-fill: black;");
+        showText(0);
+    }
+    
     
     public static void main(String[] args) {
         launch(args);
