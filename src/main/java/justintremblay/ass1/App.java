@@ -114,6 +114,23 @@ public class App extends Application {
             grid.add(makeKey(middle[col], midCodes[col], 45), col, 2);
         }
         
+        
+        grid.add(makeKey("Shift", KeyCode.SHIFT, 70), 0, 3, 2, 1);
+        String[] bottom = {"Z", "X", "C", "V", "B", "N", "M"};
+        KeyCode[] bottomKeys = {
+            KeyCode.Z, KeyCode.X, KeyCode.C, KeyCode.V, KeyCode.B, KeyCode.N, KeyCode.M
+        };
+        for (int i = 0; i < bottom.length; i++) {
+            grid.add(makeKey(bottom[i], bottomKeys[i], 45), i + 2, 3);
+        }
+        Button backspace = makeKey("Backspace", KeyCode.BACK_SPACE, 90);
+        grid.add(backspace, 9, 3);
+
+        grid.add(makeKey(",", KeyCode.COMMA, 45), 0, 4);
+        Button space = makeKey("Space", KeyCode.SPACE, 350);
+        grid.add(space, 1, 4, 8, 1);
+        grid.add(makeKey(".", KeyCode.PERIOD, 45), 9, 4);
+        
 
         return grid;
     }
